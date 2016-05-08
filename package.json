@@ -57,13 +57,12 @@
   "main": "src/index.js",
   "scripts": {
     "build-lib": "babel src/index.js --out-file lib/react-grid-layout-builder.js",
-    "build": "./node_modules/.bin/webpack -p",
-    "build-demo": "set NODE_ENV=production && npm run build",
+    "build-demo": "NODE_ENV=production ./node_modules/.bin/webpack -p",
     "stats": "./node_modules/.bin/webpack --profile --json > stats.json",
     "start": "./node_modules/.bin/webpack-dev-server",
     "lint": "./node_modules/.bin/eslint src",
     "preversion": "npm run lint && npm test",
-    "version": "SET NODE_ENV=production && npm run build-demo",
+    "version": "npm run build-demo",
     "postversion": "git push",
     "test": "./node_modules/.bin/jest",
     "eslint": "eslint **/*.js"
