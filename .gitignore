@@ -1,0 +1,6 @@
+node_modules
+lib
+./.vscode
+./npmignore
+npm-debug.log
+./stats.json

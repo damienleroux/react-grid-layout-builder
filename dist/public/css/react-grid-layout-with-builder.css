@@ -1,0 +1,26 @@
+.reactDashboardBuilderBody {
+  padding: 10px;
+}
+
+.reactDashboardBuilderOpener {
+  position: absolute;
+  left: 50%;
+  width: 26px;
+}
+
+.reactDashboardBuilderOpener i {
+  position: absolute;
+  left: -50%;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 9999;
+  background-color: rgba(201, 201, 201, 0.29);
+  color: rgba(0, 0, 0, 0.39);
+}
+
+.reactDashboardBuilderBody,
+.reactDashboardBuilderOpener i:hover {
+  background-color: #E9E9E9;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.7);
+}
