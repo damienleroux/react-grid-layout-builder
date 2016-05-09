@@ -1,6 +1,6 @@
 {
   "name": "react-grid-layout-builder",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "keywords": [
     "react",
@@ -61,7 +61,7 @@
     "stats": "./node_modules/.bin/webpack --profile --json > stats.json",
     "start": "./node_modules/.bin/webpack-dev-server",
     "lint": "./node_modules/.bin/eslint src",
-    "preversion": "npm run lint && npm test",
+    "preversion": "npm run lint",
     "version": "npm run build-demo",
     "postversion": "git push",
     "test": "./node_modules/.bin/jest",

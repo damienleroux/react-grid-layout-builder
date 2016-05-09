@@ -31,21 +31,18 @@ var connectReactGridLayoutBuilder = ReactGridLayout => class extends Component {
       this.props.onDrag(layout, oldItem, newItem, placeholder, e, element)
     }
   }
-  // Calls when drag is complete.
-  onDragStop = (layout, oldItem, newItem, placeholder, e, element) => {
+  updateLayoutIfNecessary = (layout, oldItem, newItem, placeholder, e, element) => {
+
     var reactGridLayout = _.clone(getReactGridLayoutFromProps(this.props));
-    if (this.props.onDragStop) {
-      this.props.onDragStop(layout, oldItem, newItem, placeholder, e, element)
-    }
     var areSameItem = (itemA, itemB) => {
-      return itemA.x === itemB.x && itemA.y === itemB.y;
+      return itemA.x === itemB.x && itemA.y === itemB.y && itemA.w === itemB.w && itemA.h === itemB.h;
     }
     if (reactGridLayout.layout) {
       reactGridLayout.layout = _.map(reactGridLayout.layout, (item) => {
         if (areSameItem(item, oldItem)) {
           return newItem;
         }
-        return item
+        return item;
       })
     }
     if (reactGridLayout.layouts) {
@@ -54,10 +51,18 @@ var connectReactGridLayoutBuilder = ReactGridLayout => class extends Component {
           if (areSameItem(item, oldItem)) {
             return newItem;
           }
-          return item
+          return item;
         })
       })
     }
+    return reactGridLayout;
+  }
+  // Calls when drag is complete.
+  onDragStop = (layout, oldItem, newItem, placeholder, e, element) => {
+    if (this.props.onDragStop) {
+      this.props.onDragStop(layout, oldItem, newItem, placeholder, e, element)
+    }
+    var reactGridLayout = this.updateLayoutIfNecessary(layout, oldItem, newItem, placeholder, e, element);
     this.props.updateConfigFunc(reactGridLayout);
   }
   // Calls when resize starts.
@@ -77,6 +82,8 @@ var connectReactGridLayoutBuilder = ReactGridLayout => class extends Component {
     if (this.props.onResizeStop) {
       this.props.onResizeStop(layout, oldItem, newItem, placeholder, e, element)
     }
+    var reactGridLayout = this.updateLayoutIfNecessary(layout, oldItem, newItem, placeholder, e, element);
+    this.props.updateConfigFunc(reactGridLayout);
   }
   // Callback when the width changes, so you can modify the layout as needed.
   onWidthChange = (containerWidth, margin, cols) => {
@@ -106,6 +113,8 @@ var connectReactGridLayoutBuilder = ReactGridLayout => class extends Component {
   render() {
     var {children, updateConfigFunc, ...reactGridLayout} = this.props;
 
+    //avoid immutability issue to keep control on reactGridLayout future modifications
+    reactGridLayout = _.cloneDeep(reactGridLayout);
     return (
       <ReactGridLayout
         {...reactGridLayout}

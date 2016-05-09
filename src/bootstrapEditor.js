@@ -1,23 +1,35 @@
 import React from 'react';
 import { Grid, Row, Col, FormGroup, FormControl, Checkbox, ControlLabel, HelpBlock, InputGroup } from 'react-bootstrap';
 
-function InputNumberGtrThanZero(props) {
-  var { name, label, value, editConfigCallback, addon } = props;
+function InputNumber(props) {
+  var { name, label, value, min, max, editConfigCallback, addon } = props;
   value = value ? value : 0;
-  var helpBlock = null;
-  var getValidationState = () => {
-    if (value < 1) {
-      helpBlock = <HelpBlock>must be greater than zero.</HelpBlock>;
+  
+  var getValidationState = (value) => {
+    if (min && value < min) {
+      return 'error';
+    } else {
+      return 'success';
+    }
+
+    if (max && value > max) {
       return 'error';
     } else {
       return 'success';
     }
   }
+
+  var onChange = (event) => {
+    if (getValidationState(event.target.value) === 'success') {
+      editConfigCallback(event);
+    }
+  }
+
   return (
     <FormGroup
       controlId={name}
-      className="inputNumberGtrThanZero"
-      validationState={getValidationState() }
+      className="inputNumber"
+      validationState={getValidationState(value) }
       >
       <ControlLabel>{label}</ControlLabel>
       <InputGroup>
@@ -25,18 +37,25 @@ function InputNumberGtrThanZero(props) {
           type="number"
           value={value}
           placeholder={label}
-          onChange={editConfigCallback}
+          onChange={onChange}
           />
         {addon ? <InputGroup.Addon>{addon}</InputGroup.Addon> : null}
       </InputGroup>
-      {helpBlock}
     </FormGroup>
   );
 }
 
+function InputNumberGtrThanZero(props) {
+  return <InputNumber {...props} min={1}/>;
+}
+
+function InputNumberGtrOrEqualToZero(props) {
+  return <InputNumber {...props} min={0}/>;
+}
+
 function BreakpointInput(props) {
   var { name } = props;
-  return <InputNumberGtrThanZero {...props} name={"breakpoints_" + name} addon="px"/>
+  return <InputNumberGtrOrEqualToZero {...props} name={"breakpoints_" + name} addon="px"/>
 }
 
 function Breakpoints(props) {
@@ -89,7 +108,7 @@ function Layouts(props) {
       <Checkbox id="staticLayout" checked={staticLayout} onClick={props.editConfigCallback }>
         All layout static
       </Checkbox>
-      {/*<InputNumberGtrThanZero value={rowHeight} label="Row Height" editConfigCallback={props.editConfigCallback} name={"rowHeight" } addon="px"/>*/}
+      <InputNumberGtrThanZero value={rowHeight} label="Row Height" editConfigCallback={props.editConfigCallback} name={"rowHeight" } addon="px"/>
     </div>
   );
 }
