@@ -40,7 +40,10 @@ var connectReactGridLayoutBuilder = ReactGridLayout => class extends Component {
     if (reactGridLayout.layout) {
       reactGridLayout.layout = _.map(reactGridLayout.layout, (item) => {
         if (areSameItem(item, oldItem)) {
-          return newItem;
+          //remove option set by react-grid-layout
+          var ret = _.clone(newItem)
+          ret.moved = undefined;
+          return ret;
         }
         return item;
       })
@@ -49,7 +52,10 @@ var connectReactGridLayoutBuilder = ReactGridLayout => class extends Component {
       _.forEach(reactGridLayout.layouts, (layout, key) => {
         reactGridLayout.layouts[key] = _.map(layout, (item) => {
           if (areSameItem(item, oldItem)) {
-            return newItem;
+            //remove option set by react-grid-layout
+            var ret = _.clone(newItem)
+            ret.moved = undefined;
+            return ret;
           }
           return item;
         })
