@@ -35,7 +35,7 @@ var connectReactGridLayoutBuilder = ReactGridLayout => class extends Component {
 
     var reactGridLayout = _.clone(getReactGridLayoutFromProps(this.props));
     var areSameItem = (itemA, itemB) => {
-      return itemA.x === itemB.x && itemA.y === itemB.y && itemA.w === itemB.w && itemA.h === itemB.h;
+      return itemA.i === itemB.i;
     }
     if (reactGridLayout.layout) {
       reactGridLayout.layout = _.map(reactGridLayout.layout, (item) => {
