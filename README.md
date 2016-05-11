@@ -13,6 +13,8 @@ Be careful:
 
 1. [only one demo for now]((http://damienleroux.github.io/react-grid-layout-builder/demo)
 
+![reactgridlayoutbuilderdemo](https://cloud.githubusercontent.com/assets/12717418/15196785/5ab09438-17ce-11e6-87dd-11bfc90c7526.gif)
+
 ## Features
 
 React-grid-layout-builder is to use on the [responsive react-grid-layout](https://github.com/STRML/react-grid-layout#responsive-usage) only and can be used to:
