@@ -4,7 +4,7 @@ import { Grid, Row, Col, FormGroup, FormControl, Checkbox, ControlLabel, HelpBlo
 function InputNumber(props) {
   var { name, label, value, min, max, editConfigCallback, addon } = props;
   value = value ? value : 0;
-  
+
   var getValidationState = (value) => {
     if (min && value < min) {
       return 'error';
@@ -98,23 +98,45 @@ function Cols(props) {
 }
 
 function Layouts(props) {
-  var {staticLayout, rowHeight} = props;
   if (!props.layouts) {
     return <div/>;
   }
+
+  var {rowHeight, isDraggable, isResizable, autoSize, verticalCompact, margin} = props;
+
+  //Set with defaultValue if no defined
+  rowHeight = rowHeight !== undefined ? rowHeight : 150;
+  isDraggable = isDraggable !== undefined ? isDraggable : true;
+  isResizable = isResizable !== undefined ? isResizable : true;
+  autoSize = autoSize !== undefined ? autoSize : true;
+  verticalCompact = verticalCompact !== undefined ? verticalCompact : true;
+  var marginX = margin && margin[0] !== undefined ? margin[0] : 10;
+  var marginY = margin && margin[1] !== undefined ? margin[1] : 10;
+
   return (
     <div >
       <h4>Layouts</h4>
-      <Checkbox id="staticLayout" checked={staticLayout} onClick={props.editConfigCallback }>
-        All layout static
-      </Checkbox>
       <InputNumberGtrThanZero value={rowHeight} label="Row Height" editConfigCallback={props.editConfigCallback} name={"rowHeight" } addon="px"/>
+      <Checkbox id="isDraggable" checked={isDraggable } onChange={props.editConfigCallback }>
+        Items are draggable
+      </Checkbox>
+      <Checkbox id="isResizable" checked={isResizable} onChange={props.editConfigCallback }>
+        Items are resizable
+      </Checkbox>
+      <Checkbox id="autoSize" checked={autoSize} onChange={props.editConfigCallback }>
+        The container height swells and contracts to fit contents
+      </Checkbox>
+      <Checkbox id="verticalCompact" checked={verticalCompact} onChange={props.editConfigCallback }>
+        The layout will compact vertically
+      </Checkbox>
+      <InputNumberGtrThanZero value={marginX} label="Horizontal margin between items" editConfigCallback={props.editConfigCallback} name={"marginX" } addon="px"/>
+      <InputNumberGtrThanZero value={marginY} label="Vertical margin between items" editConfigCallback={props.editConfigCallback} name={"marginY" } addon="px"/>
     </div>
   );
 }
 
 export default function BootstrapEditor(props) {
-  var {rowHeight, breakpoints, cols, layouts, staticLayout} = props.reactGridLayout;
+  var {breakpoints, cols} = props.reactGridLayout;
   return (
     <form className="reactDashboardBuilderBody">
       <Grid fluid>
@@ -130,9 +152,9 @@ export default function BootstrapEditor(props) {
         </Row>
         <Row>
           <Col>
-            <Layouts layouts={layouts} rowHeight={rowHeight} staticLayout={staticLayout} editConfigCallback={props.editConfigCallback}/>
+            <Layouts {...props.reactGridLayout} editConfigCallback={props.editConfigCallback}/>
           </Col>
-          </Row>
+        </Row>
       </Grid>
     </form>
   );

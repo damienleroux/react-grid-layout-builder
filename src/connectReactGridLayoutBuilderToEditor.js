@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import _ from "lodash";
 
-export var connectReactGridLayoutBuilderToEditor = Editor => class extends Component {	
+export var connectReactGridLayoutBuilderToEditor = Editor => class extends Component {
   editConfigCallback = (event) => {
 		if (event) {
 			if (event.target) {
@@ -10,22 +10,23 @@ export var connectReactGridLayoutBuilderToEditor = Editor => class extends Compo
 				var id = event.target.id;
 				var targetValue = event.target.value;
 				switch (id) {
-					case "staticLayout":
+					case "isDraggable":
 						targetValue = event.target.checked;
-						var {layout, layouts} = reactGridLayout;
-						if (layout) {
-							_.forEach(layout, (item) => {
-								item.static = targetValue;
-							})
-						}
-						if (layouts) {
-							_.forEach(layouts, (layout) => {
-								_.forEach(layout, (item) => {
-									item.static = targetValue;
-								})
-							})
-						}
+						reactGridLayout.isDraggable = targetValue;
 						break;
+					case "isResizable":
+						targetValue = event.target.checked;
+						reactGridLayout.isResizable = targetValue;
+						break;
+					case "autoSize":
+						targetValue = event.target.checked;
+						reactGridLayout.autoSize = targetValue;
+						break;
+					case "verticalCompact":
+						targetValue = event.target.checked;
+						reactGridLayout.verticalCompact = targetValue;
+						break;
+
 					case "breakpoints_lg":
 					case "breakpoints_md":
 					case "breakpoints_sm":
@@ -43,12 +44,26 @@ export var connectReactGridLayoutBuilderToEditor = Editor => class extends Compo
 					case "rowHeight":
 						reactGridLayout.rowHeight = Number(targetValue);
 						break;
+					case "marginX":
+						if (reactGridLayout.margin) {
+							reactGridLayout.margin[0] = Number(targetValue);
+						} else {
+							reactGridLayout.margin = [Number(targetValue), 10];
+						}
+						break;
+					case "marginY":
+						if (reactGridLayout.margin) {
+							reactGridLayout.margin[1] = Number(targetValue);
+						} else {
+							reactGridLayout.margin = [10,Number(targetValue)];
+						}
+						break;
 				}
 				this.props.updateConfigFunc(reactGridLayout);
 			}
 		}
 	}
-render(){
+	render() {
     return <Editor editConfigCallback={this.editConfigCallback} {...this.props} />;
   }
 };
