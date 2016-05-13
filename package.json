@@ -1,6 +1,6 @@
 {
   "name": "react-grid-layout-builder",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "keywords": [
     "react",
@@ -54,9 +54,9 @@
     "react": ">= 0.14.0",
     "react-dom": ">= 0.14.0"
   },
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "build-lib": "babel src/index.js --out-file lib/react-grid-layout-builder.js",
+    "build-lib": "babel src --out-dir lib",
     "build-demo": "SET NODE_ENV=production&&\"./node_modules/.bin/webpack\" -p",
     "stats": "./node_modules/.bin/webpack --profile --json > stats.json",
     "start": "./node_modules/.bin/webpack-dev-server",
