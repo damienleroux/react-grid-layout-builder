@@ -41,8 +41,35 @@ Include the following stylesheets in your application:
 /node_modules/react-resizable/css/styles.css
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/font-awesome/css/font-awesome.min.css">
 ```
-This builder is graphically powered by [Bootstrap](http://getbootstrap.com/getting-started/) 
+
+This builder editor is graphically powered by [Bootstrap](http://getbootstrap.com/getting-started/)
+
+Include the following stylesheets in your application:
+
+```
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+```
+Or create your own editor on the model given in [src/bootstrapEditor](https://github.com/damienleroux/react-grid-layout-builder/blob/master/src/bootstrapEditor.js). You'll be able to add fields or remove others
+In that case, you'll have to wrap it with `connectReactGridLayoutBuilderToEditor`. Example:
+
+```javascript
+
+//YourOwnBuilderEditor is a copy of src/bootstrapEditor with your own style and your own fields
+var ReactGridLayoutBuilder = connectReactGridLayoutBuilderToEditor(YourOwnBuilderEditor);
+export default ReactGridLayoutBuilder;
+```
+
+
+This opening dock icon is graphically powered by [Bootstrap](http://fontawesome.io/)
+
+Include the following stylesheets in your application if you use it:
+
+```
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+```
+Or put the editor anywhere else on your app.
 
 ## Usage
 
