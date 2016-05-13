@@ -76,6 +76,7 @@ export default class App extends React.Component {
               <i className="fa fa-github" aria-hidden="true"></i> View on github
             </a>
             <h4>powered by <a href="https://github.com/STRML/react-grid-layout" target="blank"> @react-grid-layout</a></h4>
+            <h4>powered by <a href="https://react-bootstrap.github.io/" target="blank"> @react-bootstrap</a></h4>
             <h5>Generated Layout:</h5>
             <pre>
               <code>

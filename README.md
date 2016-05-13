@@ -39,7 +39,10 @@ Include the following stylesheets in your application:
 /node_modules/react-grid-layout-builder/css/styles.css
 /node_modules/react-grid-layout/css/styles.css
 /node_modules/react-resizable/css/styles.css
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
 ```
+This builder is graphically powered by [Bootstrap](http://getbootstrap.com/getting-started/) 
 
 ## Usage
 
@@ -99,19 +102,40 @@ render() {
 ### API:
 
 #### ReactGridLayoutBuilder
+`<ReactGridLayoutBuilder/>` is a react component that renders fields to edit some of the [react-grid-layout possible props](https://github.com/STRML/react-grid-layout#grid-layout-props).
 
-`<ReactGridLayoutBuilder/>` is a react component that renders fields to edit some of the [react-grid-layout possible props](https://github.com/STRML/react-grid-layout#grid-layout-props) aka:
-* the number of pixels that defines responsive breakpoints.
+This component uses [Bootstrap](http://getbootstrap.com/getting-started/) & [React-Bootstrap](https://react-bootstrap.github.io/) for rendering the fields
 
-Corresponding react-grid-layout property: `breakpoints: ?Object = {lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}`
+The builder can be used to set:
 
-* the number of colonnes for each responsive breakpoints 
+```javascript
+// If true, the container height swells and contracts to fit contents
+autoSize: ?boolean = true,
 
-Corresponding react-grid-layout property: `cols: ?Object = {lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}`
+// {name: pxVal}, e.g. {lg: 1200, md: 996, sm: 768, xs: 480}
+// Breakpoint names are arbitrary but must match in the cols and layouts objects.
+breakpoints: ?Object = {lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0},
 
-* the row height of each line.
+// # of cols. This is a breakpoint -> cols map, e.g. {lg: 12, md: 10, ...}
+cols: ?Object = {lg: 12, md: 10, sm: 6, xs: 4, xxs: 2},
 
-Corresponding react-grid-layout property: `rowHeight: ?number = 150`
+// If true, the layout will compact vertically
+verticalCompact: ?boolean = true,
+
+// Margin between items [x, y] in px.
+margin: ?[number, number] = [10, 10],
+
+// Rows have a static height, but you can change this based on breakpoints
+// if you like.
+rowHeight: ?number = 150,
+
+//
+// Flags
+//
+isDraggable: ?boolean = true,
+isResizable: ?boolean = true,
+```
+
 
 #### connectReactGridLayoutBuilder
 
