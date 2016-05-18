@@ -28,8 +28,8 @@ function InputNumber(props) {
   return (
     <FormGroup
       controlId={name}
-      className="inputNumber"
-      validationState={getValidationState(value) }
+      className="input20Percent"
+      inline
       >
       <ControlLabel>{label}</ControlLabel>
       <InputGroup>
