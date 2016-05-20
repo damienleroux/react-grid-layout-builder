@@ -6,7 +6,7 @@ function getReactGridLayoutFromProps(props) {
   return reactGridLayout;
 }
 var connectReactGridLayoutBuilder = ReactGridLayout => class extends Component {
-  static propTypes = Object.assign({}, ReactGridLayout.propTypes, {
+  static propTypes = _.assign({}, ReactGridLayout.propTypes, {
     updateConfigFunc: PropTypes.func.isRequired
   })
 
