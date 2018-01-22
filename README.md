@@ -5,9 +5,17 @@ Be careful:
 * React-grid-layout-builder doesn't add additional features to existing React-grid-layout. Read more about [React-grid-layout features](https://github.com/STRML/react-grid-layout#features) if required.
 * React-grid-layout-builder works only on [responsive react-grid-layout](https://github.com/STRML/react-grid-layout#responsive-usage). Any help on other React-grid-layout component is welcome :)
 
-## Why this builder?
+## Motivation
 
 [React-grid-layout](https://github.com/STRML/react-grid-layout) is fun. I wanted to play with it without coding the configuration. So I tried to make a user-friendly editor. Happy to share it now :)
+
+## Installation
+
+ - clone this repository
+ - go into the cloned folder
+ - cmd `npm i`
+ - cmd `npm run start`
+ - open url [http://localhost:3100/](http://localhost:3100/)
 
 ## Demos
 

@@ -59,6 +59,7 @@
     "build-lib": "babel src --out-dir lib",
     "build-demo": "SET NODE_ENV=production&&\"./node_modules/.bin/webpack\" -p",
     "stats": "./node_modules/.bin/webpack --profile --json > stats.json",
+    "dev": "./node_modules/.bin/webpack-dev-server",
     "start": "./node_modules/.bin/webpack-dev-server",
     "lint": "./node_modules/.bin/eslint src",
     "preversion": "npm run lint",
