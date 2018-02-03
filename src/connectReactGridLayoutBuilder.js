@@ -1,5 +1,8 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import _ from "lodash";
+import PropTypes from 'prop-types';
+
+
 
 function getReactGridLayoutFromProps(props) {
   var {children, updateConfigFunc, ...reactGridLayout} = props;

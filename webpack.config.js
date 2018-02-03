@@ -41,7 +41,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js?$/,
-      loaders: isProduction ? ['babel'] : ['react-hot', 'babel'],
+      loaders: isProduction ? ['babel'] : ['react-hot-loader/webpack', 'babel'],
       include: [
         path.join(__dirname, 'src'),
         path.join(__dirname, 'demo/src')
