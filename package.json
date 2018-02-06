@@ -1,6 +1,6 @@
 {
   "name": "react-grid-layout-builder",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "private": false,
   "keywords": [
     "react",
@@ -41,6 +41,7 @@
     "eslint-plugin-react": "^4.2.3",
     "expect": "^1.15.2",
     "jasmine-node": "^1.14.5",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-hot-loader": "^3.1.3",
