@@ -9,7 +9,16 @@ Be careful:
 
 [React-grid-layout](https://github.com/STRML/react-grid-layout) is fun. I wanted to play with it without coding the configuration. So I tried to make a user-friendly editor. Happy to share it now :)
 
+## Demos
+
+1. [only one demo for now]((http://damienleroux.github.io/react-grid-layout-builder/demo)
+
+![reactgridlayoutbuilderdemo](https://cloud.githubusercontent.com/assets/12717418/15196785/5ab09438-17ce-11e6-87dd-11bfc90c7526.gif)
+
+
 ## Installation
+
+### To try it locally:
 
  - clone this repository
  - go into the cloned folder
@@ -17,23 +26,7 @@ Be careful:
  - cmd `npm run start`
  - open url [http://localhost:3100/](http://localhost:3100/)
 
-## Demos
-
-1. [only one demo for now]((http://damienleroux.github.io/react-grid-layout-builder/demo)
-
-![reactgridlayoutbuilderdemo](https://cloud.githubusercontent.com/assets/12717418/15196785/5ab09438-17ce-11e6-87dd-11bfc90c7526.gif)
-
-## Features
-
-React-grid-layout-builder is to use on the [responsive react-grid-layout](https://github.com/STRML/react-grid-layout#responsive-usage) only and can be used to:
-
-* track any changes when playing with React-grid-layout
-* edit number of columns on the fly
-* edit breakpoints pixel value on the fly
-* edit the height defined as basic row
-* set all the grid as static
-
-## Installation
+### To install as dependency:
 
 Install the React-Grid-Layout-builder [package](https://www.npmjs.com/package/react-grid-layout-builder) package using [npm](https://www.npmjs.com/):
 
@@ -78,6 +71,16 @@ Include the following stylesheets in your application if you use it:
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
 ```
 Or put the editor anywhere else on your app.
+
+## Features
+
+React-grid-layout-builder is to use on the [responsive react-grid-layout](https://github.com/STRML/react-grid-layout#responsive-usage) only and can be used to:
+
+* track any changes when playing with React-grid-layout
+* edit number of columns on the fly
+* edit breakpoints pixel value on the fly
+* edit the height defined as basic row
+* set all the grid as static
 
 ## Usage
 
