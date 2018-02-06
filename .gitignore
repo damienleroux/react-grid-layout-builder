@@ -3,4 +3,3 @@ node_modules
 ./npmignore
 npm-debug.log
 ./stats.json
-lib
