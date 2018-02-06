@@ -30,6 +30,7 @@ const defaultReactGridLayoutProps = {
   cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }
 }
 
+
 class ReactGridLayoutBuilderDemo extends React.Component {
   generateDOM = () => {
     return _.map(this.props.conf.layouts.lg, function (l, i) {

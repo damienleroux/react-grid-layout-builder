@@ -13,15 +13,6 @@ var connectReactGridLayoutBuilder = ReactGridLayout => class extends Component {
     updateConfigFunc: PropTypes.func.isRequired
   })
 
-  // Callback so you can save the layout.
-  onLayoutChange = (currentLayout, allLayouts) => {
-    var reactGridLayout = _.cloneDeep(getReactGridLayoutFromProps(this.props));
-    reactGridLayout.layouts = allLayouts;
-    if (this.props.onLayoutChange) {
-      this.props.onLayoutChange(currentLayout, allLayouts)
-    }
-    this.props.updateConfigFunc(reactGridLayout);
-  }
   // Calls when drag starts.
   onDragStart = (layout, oldItem, newItem, placeholder, e, element) => {
     if (this.props.onDragStart) {
@@ -130,7 +121,6 @@ var connectReactGridLayoutBuilder = ReactGridLayout => class extends Component {
         onDragStart={this.onDragStart}
         onDrag={this.onDrag}
         onDragStop={this.onDragStop}
-        onResizeStart={this.onResizeStart}
         onResizeStart={this.onResizeStart}
         onResize={this.onResize}
         onResizeStop={this.onResizeStop}
