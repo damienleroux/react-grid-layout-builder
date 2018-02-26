@@ -46,6 +46,7 @@ function InputNumber(props) {
       className="input20Percent"
       inline="true"
     >
+
       <ControlLabel>{label}</ControlLabel>
       <InputGroup>
         <FormControl
@@ -54,25 +55,33 @@ function InputNumber(props) {
           placeholder={label}
           onChange={onChange}
         />
+
         {addon ? <InputGroup.Addon>{addon}</InputGroup.Addon> : null}
       </InputGroup>
     </FormGroup>
   );
+
+  return (<TextField
+    value={value}
+    hintText={label}
+    floatingLabelText={label}
+    type="number"
+    onChange={onChange}
+  />);
 }
 
-function InputNumberGtrThanZero(props) {
 
-  // <TextField
-  //     hintText="Password Field"
-  //     floatingLabelText="Password"
-  //     type="number"
-  //   />
-  
+
+
+function InputNumberGtrThanZero(props) {
   return <InputNumber {...props} min={1} />;
+  return <MuiThemeProvider>  <div><InputNumber {...props} min={1} /></div></MuiThemeProvider>;
+
 }
 
 function InputNumberGtrOrEqualToZero(props) {
   return <InputNumber {...props} min={0} />;
+  return <MuiThemeProvider> <div><InputNumber {...props} min={0} /></div></MuiThemeProvider>;
 }
 
 function BreakpointInput(props) {
