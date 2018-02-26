@@ -152,7 +152,7 @@ function Layouts(props) {
 
           <Checkbox
             id="isResizable"
-            name="isDraggable"
+            name="isResizable"
             checked={isResizable}
             onCheck={props.editConfigCallback}
             label="Items are resizable"
@@ -161,7 +161,7 @@ function Layouts(props) {
 
           <Checkbox
             id="autoSize"
-            name="isDraggable"
+            name="autoSize"
             checked={autoSize}
             onCheck={props.editConfigCallback}
             label="The container height swells and contracts to fit contents"
@@ -170,7 +170,7 @@ function Layouts(props) {
 
           <Checkbox
             id="verticalCompact"
-            name="isDraggable"
+            name="verticalCompact"
             checked={verticalCompact}
             onCheck={props.editConfigCallback}
             label="The layout will compact vertically"
