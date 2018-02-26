@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import BootstrapEditor from "./bootstrapEditor";
+import BootstrapEditor from "./materialUIEditor";
 import connectReactGridLayoutBuilderToEditor from "./connectReactGridLayoutBuilderToEditor";
 
 
