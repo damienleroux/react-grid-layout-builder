@@ -54,7 +54,7 @@ module.exports = {
     ]
   },
   devServer: isProduction ? null : {
-    open: true,
+    //open: true,
     quiet: true,
     publicPath: '/static/',
     port: 3100,

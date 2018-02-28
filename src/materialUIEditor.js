@@ -14,7 +14,6 @@ const styles = {
     marginBottom: 16,
   },
 };
-import { Grid, Row, Col, FormGroup, FormControl, ControlLabel, HelpBlock, InputGroup } from 'react-bootstrap';
 
 function InputNumber(props) {
   var { name, label, value, min, max, editConfigCallback, addon } = props;
@@ -41,47 +40,33 @@ function InputNumber(props) {
   }
 
   return (
-    <FormGroup
-      controlId={name}
-      className="input20Percent"
-      inline="true"
-    >
+    <div>
+      <TextField
+        style={{ width: "40%" }}
+        id={name}
+        name={name}
+        value={value}
+        hintText={label}
+        floatingLabelText={label}
+        type="number"
+        onChange={onChange}
+      />
 
-      <ControlLabel>{label}</ControlLabel>
-      <InputGroup>
-        <FormControl
-          type="number"
-          value={value}
-          placeholder={label}
-          onChange={onChange}
-        />
-
-        {addon ? <InputGroup.Addon>{addon}</InputGroup.Addon> : null}
-      </InputGroup>
-    </FormGroup>
+      {addon ? <span>{addon}</span> : null}
+    </div>
   );
-
-  return (<TextField
-    value={value}
-    hintText={label}
-    floatingLabelText={label}
-    type="number"
-    onChange={onChange}
-  />);
 }
 
 
 
 
 function InputNumberGtrThanZero(props) {
-  return <InputNumber {...props} min={1} />;
-  return <MuiThemeProvider>  <div><InputNumber {...props} min={1} /></div></MuiThemeProvider>;
+  return <div><InputNumber {...props} min={1} /></div>;
 
 }
 
 function InputNumberGtrOrEqualToZero(props) {
-  return <InputNumber {...props} min={0} />;
-  return <MuiThemeProvider> <div><InputNumber {...props} min={0} /></div></MuiThemeProvider>;
+  return <div style={{ display: "inline-block" }}><InputNumber {...props} min={0} /></div>;
 }
 
 function BreakpointInput(props) {
@@ -91,7 +76,7 @@ function BreakpointInput(props) {
 
 function Breakpoints(props) {
   if (!props.breakpoints) {
-    return <div />;
+    return (<div></div>);
   }
   var { lg, md, sm, xs, xxs } = props.breakpoints;
   return (
@@ -201,24 +186,29 @@ function Layouts(props) {
 export default function BootstrapEditor(props) {
   var { breakpoints, cols } = props.reactGridLayout;
   return (
-    <form className="reactDashboardBuilderBody">
-      <Grid fluid>
-        <Row>
-          <Col>
-            <Breakpoints breakpoints={breakpoints} editConfigCallback={props.editConfigCallback} />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Cols cols={cols} editConfigCallback={props.editConfigCallback} />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Layouts {...props.reactGridLayout} editConfigCallback={props.editConfigCallback} />
-          </Col>
-        </Row>
-      </Grid>
+    <form className="reactDashboardBuilderBody" style={{ background: "unset" }}>
+      <MuiThemeProvider>
+
+        <div className="container-fluid">
+
+          <div className="row">
+            <div className="col">
+              <Breakpoints breakpoints={breakpoints} editConfigCallback={props.editConfigCallback} />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <Cols cols={cols} editConfigCallback={props.editConfigCallback} />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <Layouts {...props.reactGridLayout} editConfigCallback={props.editConfigCallback} />
+            </div>
+          </div>
+        </div>
+
+      </MuiThemeProvider>
     </form>
   );
 }
