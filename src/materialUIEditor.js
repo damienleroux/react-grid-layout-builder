@@ -40,9 +40,9 @@ function InputNumber(props) {
   }
 
   return (
-    <div>
+    <div className="col">
       <TextField
-        style={{ width: "40%" }}
+        style={{ width: "80%" }}
         id={name}
         name={name}
         value={value}
@@ -61,12 +61,11 @@ function InputNumber(props) {
 
 
 function InputNumberGtrThanZero(props) {
-  return <div><InputNumber {...props} min={1} /></div>;
-
+  return <InputNumber {...props} min={1} />;
 }
 
 function InputNumberGtrOrEqualToZero(props) {
-  return <div style={{ display: "inline-block" }}><InputNumber {...props} min={0} /></div>;
+  return <InputNumber {...props} min={0} />;
 }
 
 function BreakpointInput(props) {
@@ -80,13 +79,15 @@ function Breakpoints(props) {
   }
   var { lg, md, sm, xs, xxs } = props.breakpoints;
   return (
-    <div >
+    <div>
       <h4>Breakpoints</h4>
-      <BreakpointInput name="lg" value={lg} label="large" editConfigCallback={props.editConfigCallback} />
-      <BreakpointInput name="md" value={md} label="medium" editConfigCallback={props.editConfigCallback} />
-      <BreakpointInput name="sm" value={sm} label="small" editConfigCallback={props.editConfigCallback} />
-      <BreakpointInput name="xs" value={xs} label="extra small" editConfigCallback={props.editConfigCallback} />
-      <BreakpointInput name="xxs" value={xxs} label="extra extra small" editConfigCallback={props.editConfigCallback} />
+      <div className="row">
+        <BreakpointInput name="lg" value={lg} label="large" editConfigCallback={props.editConfigCallback} />
+        <BreakpointInput name="md" value={md} label="medium" editConfigCallback={props.editConfigCallback} />
+        <BreakpointInput name="sm" value={sm} label="small" editConfigCallback={props.editConfigCallback} />
+        <BreakpointInput name="xs" value={xs} label="extra small" editConfigCallback={props.editConfigCallback} />
+        <BreakpointInput name="xxs" value={xxs} label="extra extra small" editConfigCallback={props.editConfigCallback} />
+      </div>
     </div>
   );
 }
@@ -104,11 +105,13 @@ function Cols(props) {
   return (
     <div >
       <h4>Columns</h4>
-      <ColInput name="lg" value={lg} label="large" editConfigCallback={props.editConfigCallback} />
-      <ColInput name="md" value={md} label="medium" editConfigCallback={props.editConfigCallback} />
-      <ColInput name="sm" value={sm} label="small" editConfigCallback={props.editConfigCallback} />
-      <ColInput name="xs" value={xs} label="extra small" editConfigCallback={props.editConfigCallback} />
-      <ColInput name="xxs" value={xxs} label="extra extra small" editConfigCallback={props.editConfigCallback} />
+      <div className="row">
+        <ColInput name="lg" value={lg} label="large" editConfigCallback={props.editConfigCallback} />
+        <ColInput name="md" value={md} label="medium" editConfigCallback={props.editConfigCallback} />
+        <ColInput name="sm" value={sm} label="small" editConfigCallback={props.editConfigCallback} />
+        <ColInput name="xs" value={xs} label="extra small" editConfigCallback={props.editConfigCallback} />
+        <ColInput name="xxs" value={xxs} label="extra extra small" editConfigCallback={props.editConfigCallback} />
+      </div>
     </div>
   );
 }
@@ -176,9 +179,10 @@ function Layouts(props) {
         </div>
       </MuiThemeProvider>
 
-
-      <InputNumberGtrThanZero value={marginX} label="Horizontal margin between items" editConfigCallback={props.editConfigCallback} name={"marginX"} addon="px" />
-      <InputNumberGtrThanZero value={marginY} label="Vertical margin between items" editConfigCallback={props.editConfigCallback} name={"marginY"} addon="px" />
+      <div className="row">
+        <InputNumberGtrThanZero value={marginX} label="Horizontal margin between items" editConfigCallback={props.editConfigCallback} name={"marginX"} addon="px" />
+        <InputNumberGtrThanZero value={marginY} label="Vertical margin between items" editConfigCallback={props.editConfigCallback} name={"marginY"} addon="px" />
+      </div>
     </div>
   );
 }
@@ -188,24 +192,14 @@ export default function BootstrapEditor(props) {
   return (
     <form className="reactDashboardBuilderBody" style={{ background: "unset" }}>
       <MuiThemeProvider>
-
         <div className="container-fluid">
 
-          <div className="row">
-            <div className="col">
-              <Breakpoints breakpoints={breakpoints} editConfigCallback={props.editConfigCallback} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <Cols cols={cols} editConfigCallback={props.editConfigCallback} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <Layouts {...props.reactGridLayout} editConfigCallback={props.editConfigCallback} />
-            </div>
-          </div>
+          <Breakpoints breakpoints={breakpoints} editConfigCallback={props.editConfigCallback} />
+
+          <Cols cols={cols} editConfigCallback={props.editConfigCallback} />
+
+          <Layouts {...props.reactGridLayout} editConfigCallback={props.editConfigCallback} />
+
         </div>
 
       </MuiThemeProvider>
