@@ -46,10 +46,15 @@ module.exports = {
         path.join(__dirname, 'src'),
         path.join(__dirname, 'demo/src')
       ]
+    },
+    {
+      test: /\.(woff|woff2|eot|ttf|svg)$/,
+      loader: 'file?name=fonts/[name].[ext]'
     }
     ]
   },
   devServer: isProduction ? null : {
+    //open: true,
     quiet: true,
     publicPath: '/static/',
     port: 3100,

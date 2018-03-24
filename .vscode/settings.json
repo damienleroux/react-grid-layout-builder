@@ -1,5 +1,10 @@
 // Placez vos paramètres dans ce fichier pour remplacer les paramètres par défaut et les paramètres utilisateur.
 {
     //disable default javascript validator replaced by eslint
-    "javascript.validate.enable" : false 
+    "javascript.validate.enable" : false,
+    "editor.fontSize": 12,
+    "markdown.preview.fontSize": 12,
+    "terminal.integrated.fontSize": 12,
+    "editor.tabSize": 2,
+
 } 
