@@ -1,12 +1,22 @@
 import React, { Component, PropTypes } from 'react';
-import materialUIEditor from "./materialUIEditor";
-import connectReactGridLayoutBuilderToEditor from "./connectReactGridLayoutBuilderToEditor";
+import connectReactGridLayoutBuilderToEditor from "./components/connectReactGridLayoutBuilderToEditor";
+export connectReactGridLayoutBuilderToEditor from "./components/connectReactGridLayoutBuilderToEditor";
 
 
-var ReactGridLayoutBuilder = connectReactGridLayoutBuilderToEditor(materialUIEditor);
-
+export const ReactGridLayoutBuilder = connectReactGridLayoutBuilderToEditor(materialUIEditor);
 export withOpeningDock from "./components/withOpeningDock";
-export connectReactGridLayoutBuilder from "./connectReactGridLayoutBuilder";
-export connectReactGridLayoutBuilderToEditor from "./connectReactGridLayoutBuilderToEditor";
-export materialUIEditor from "./materialUIEditor";
-export default ReactGridLayoutBuilder;
+export connectReactGridLayoutBuilder from "./components/connectReactGridLayoutBuilder";
+/**
+ * Material UI
+ */
+import materialUIEditor from "./editors/material-ui";
+export materialUIEditor from "./editors/material-ui";
+export const MaterialUIReactGridLayoutBuilder = connectReactGridLayoutBuilderToEditor(materialUIEditor);
+
+
+/**
+ * Bootstrap
+ */
+import bootstrapEditor from "./editors/bootstrap";
+export bootstrapEditor from "./editors/bootstrap";
+export const BootstrapReactGridLayoutBuilder = connectReactGridLayoutBuilderToEditor(bootstrapEditor);

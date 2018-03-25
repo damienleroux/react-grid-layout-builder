@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import _ from "lodash";
 
-export var connectReactGridLayoutBuilderToEditor = Editor => class extends Component {
-  editConfigCallback = (event) => {
+export const connectReactGridLayoutBuilderToEditor = Editor => class extends Component {
+	editConfigCallback = (event) => {
 		if (event) {
 			if (event.target) {
-				var reactGridLayout = _.cloneDeep(this.props.reactGridLayout);
+				const reactGridLayout = _.cloneDeep(this.props.reactGridLayout);
 
-				var id = event.target.id;
-				var targetValue = event.target.value;
+				const id = event.target.id;
+				let targetValue = event.target.value;
 				switch (id) {
 					case "isDraggable":
 						targetValue = event.target.checked;
@@ -55,7 +55,7 @@ export var connectReactGridLayoutBuilderToEditor = Editor => class extends Compo
 						if (reactGridLayout.margin) {
 							reactGridLayout.margin[1] = Number(targetValue);
 						} else {
-							reactGridLayout.margin = [10,Number(targetValue)];
+							reactGridLayout.margin = [10, Number(targetValue)];
 						}
 						break;
 				}
@@ -64,8 +64,8 @@ export var connectReactGridLayoutBuilderToEditor = Editor => class extends Compo
 		}
 	}
 	render() {
-    return <Editor editConfigCallback={this.editConfigCallback} {...this.props} />;
-  }
+		return <Editor editConfigCallback={this.editConfigCallback} {...this.props} />;
+	}
 };
 
 export default connectReactGridLayoutBuilderToEditor;

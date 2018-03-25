@@ -24,7 +24,9 @@ Be careful:
  - go into the cloned folder
  - cmd `npm i`
  - cmd `npm run start`
- - open url [http://localhost:3100/](http://localhost:3100/)
+ - open urls
+    - [http://localhost:3100/bootstrap/index.html](http://localhost:3100/bootstrap/index.html) for bootstrap editor
+    - [http://localhost:3100/material-ui/index.html](http://localhost:3100/material-ui/index.html) for material-ui editor
 
 ### To install as dependency:
 
@@ -256,5 +258,5 @@ render() {
 - [ ] Choose which item is static or not
 - [ ] Choose which item is displayed or not
 - [ ] Provide an editor for not-responsive grid layout
-- [ ] Provide an editor based on material UI
+- [x] Provide an editor based on material UI (thanks to [@nywooz](https://github.com/nywooz))
 - [ ] Save or load a custom layout
