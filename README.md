@@ -1,4 +1,4 @@
-# react-grid-layout-builder [Demo](http://damienleroux.github.io/react-grid-layout-builder/demo)
+# react-grid-layout-builder [Demo](http://damienleroux.github.io/react-grid-layout-builder/demo/index.html)
 
 React-grid-layout-builder offers a React user interface to interact with the [react-grid-layout](https://github.com/STRML/react-grid-layout) configuration. 
 Be careful:
