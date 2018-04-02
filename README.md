@@ -1,4 +1,4 @@
-# react-grid-layout-builder [Demo](http://damienleroux.github.io/react-grid-layout-builder/demo)
+# react-grid-layout-builder
 
 React-grid-layout-builder offers a React user interface to interact with the [react-grid-layout](https://github.com/STRML/react-grid-layout) configuration. 
 Be careful:
@@ -11,8 +11,8 @@ Be careful:
 
 ## Demos
 
-1. [Bootstrap editor DEMO](http://damienleroux.github.io/react-grid-layout-builder/demo/bootstrap)
-2. [Material editor DEMO](http://damienleroux.github.io/react-grid-layout-builder/demo/material-ui)
+1. [Bootstrap editor DEMO](http://damienleroux.github.io/react-grid-layout-builder/demo/bootstrap/index.html)
+2. [Material editor DEMO](http://damienleroux.github.io/react-grid-layout-builder/demo/material-ui/index.html)
 
 ![reactgridlayoutbuilderdemo](https://cloud.githubusercontent.com/assets/12717418/15196785/5ab09438-17ce-11e6-87dd-11bfc90c7526.gif)
 
@@ -260,4 +260,5 @@ render() {
 - [ ] Choose which item is displayed or not
 - [ ] Provide an editor for not-responsive grid layout
 - [x] Provide an editor based on material UI (thanks to [@nywooz](https://github.com/nywooz))
+- [ ] Have the materia-ui demo working without bootstrap css (fix css grid)
 - [ ] Save or load a custom layout
