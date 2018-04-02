@@ -29,7 +29,7 @@ function InputNumber(props) {
     <FormGroup
       controlId={name}
       className="input20Percent"
-      inline
+      inline="true"
       >
       <ControlLabel>{label}</ControlLabel>
       <InputGroup>

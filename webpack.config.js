@@ -11,18 +11,28 @@ var definePlugin = new webpack.DefinePlugin({
 module.exports = {
   devtool: 'eval',
   entry: isProduction ?
-    [ './demo/src/index' ] :
-    [
-      'webpack-dev-server/client?http://localhost:3100',
-      'webpack/hot/only-dev-server',
-      './demo/src/index'
-    ],
+    {
+      'bootstrap': './demo/src/bootstrap/index',
+      'material-ui': './demo/src/material-ui/index'
+    } :
+    {
+      'bootstrap': [
+        'webpack-dev-server/client?http://localhost:3100',
+        'webpack/hot/only-dev-server',
+        './demo/src/bootstrap/index'
+      ],
+      'material-ui': [
+        'webpack-dev-server/client?http://localhost:3100',
+        'webpack/hot/only-dev-server',
+        './demo/src/material-ui/index'
+      ]
+    },
   output: {
     path: path.join(__dirname, 'demo/static'),
-    filename: 'bundle.js',
+    filename: "[name].bundle.js",
     publicPath: isProduction ? 'static/' : '/static/'
   },
-  plugins:  isProduction ?
+  plugins: isProduction ?
     [
       new webpack.NoErrorsPlugin(),
       definePlugin,
@@ -46,10 +56,15 @@ module.exports = {
         path.join(__dirname, 'src'),
         path.join(__dirname, 'demo/src')
       ]
+    },
+    {
+      test: /\.(woff|woff2|eot|ttf|svg)$/,
+      loader: 'file?name=fonts/[name].[ext]'
     }
     ]
   },
   devServer: isProduction ? null : {
+    //open: true,
     quiet: true,
     publicPath: '/static/',
     port: 3100,

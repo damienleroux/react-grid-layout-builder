@@ -1,4 +1,4 @@
-# react-grid-layout-builder [Demo](http://damienleroux.github.io/react-grid-layout-builder/demo/index.html)
+# react-grid-layout-builder
 
 React-grid-layout-builder offers a React user interface to interact with the [react-grid-layout](https://github.com/STRML/react-grid-layout) configuration. 
 Be careful:
@@ -11,7 +11,8 @@ Be careful:
 
 ## Demos
 
-1. [only one demo for now]((http://damienleroux.github.io/react-grid-layout-builder/demo/index.html)
+1. [Bootstrap editor DEMO](http://damienleroux.github.io/react-grid-layout-builder/demo/bootstrap/index.html)
+2. [Material editor DEMO](http://damienleroux.github.io/react-grid-layout-builder/demo/material-ui/index.html)
 
 ![reactgridlayoutbuilderdemo](https://cloud.githubusercontent.com/assets/12717418/15196785/5ab09438-17ce-11e6-87dd-11bfc90c7526.gif)
 
@@ -24,7 +25,9 @@ Be careful:
  - go into the cloned folder
  - cmd `npm i`
  - cmd `npm run start`
- - open url [http://localhost:3100/](http://localhost:3100/)
+ - open urls
+    - [http://localhost:3100/bootstrap/index.html](http://localhost:3100/bootstrap/index.html) for bootstrap editor
+    - [http://localhost:3100/material-ui/index.html](http://localhost:3100/material-ui/index.html) for material-ui editor
 
 ### To install as dependency:
 
@@ -256,5 +259,6 @@ render() {
 - [ ] Choose which item is static or not
 - [ ] Choose which item is displayed or not
 - [ ] Provide an editor for not-responsive grid layout
-- [ ] Provide an editor based on material UI
+- [x] Provide an editor based on material UI (thanks to [@nywooz](https://github.com/nywooz))
+- [ ] Have the materia-ui demo working without bootstrap css (fix css grid)
 - [ ] Save or load a custom layout
