@@ -11,7 +11,7 @@ Be careful:
 
 ## Demos
 
-1. [only one demo for now]((http://damienleroux.github.io/react-grid-layout-builder/demo)
+1. [only one demo for now]((http://damienleroux.github.io/react-grid-layout-builder/demo/index.html)
 
 ![reactgridlayoutbuilderdemo](https://cloud.githubusercontent.com/assets/12717418/15196785/5ab09438-17ce-11e6-87dd-11bfc90c7526.gif)
 
