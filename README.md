@@ -262,4 +262,4 @@ render() {
 - [x] Provide an editor based on material UI (thanks to [@nywooz](https://github.com/nywooz))
 - [ ] Have the materia-ui demo working without bootstrap css (fix css grid)
 - [x] Save & load the current custom layout in local storage
-- [ ] download the current layout & upload a custom one
+- [ ] Download the current layout & upload a custom one
