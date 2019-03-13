@@ -2,6 +2,8 @@
 
 ## [Unreleased] (need to update branch gh-page when merged on "master")
 
+## [3.0.0] - 03/13/2019
+
 ### Added
 "Save or load a custom layout" using local storage as one from the TODO List
 
