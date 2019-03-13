@@ -5,6 +5,9 @@
 ## [2.0.0] - 04/02/2018
 
 ### Added
+"Save or load a custom layout" using local storage as one from the TODO List
+
+### Added
 
 new version of this editor with Material-ui (thank to [@nywooz](https://github.com/nywooz) for contributing):
 

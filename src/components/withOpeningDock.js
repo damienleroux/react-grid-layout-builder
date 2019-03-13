@@ -15,18 +15,14 @@ const withOpeningDock = ComposedComponent => class extends Component {
 	}
 
 	render() {
-		if (!this.state.builderOpen) {
-			return <div className="reactDashboardBuilderOpener">
-				<i className="fa fa-cog  fa-2x" aria-hidden="true" onClick={this.toggleConfigurator}></i>
-			</div>;
-		}
 		return (
-			<div>
-				<ComposedComponent {...this.props} builderOpen={this.state.builderOpen} />
+			<React.Fragment>
+				{this.state.builderOpen ? <ComposedComponent {...this.props} builderOpen={this.state.builderOpen} /> : null }
+				
 				<div className="reactDashboardBuilderOpener">
 					<i className="fa fa-cog fa-2x" aria-hidden="true" onClick={this.toggleConfigurator}></i>
 				</div>
-			</div>
+			</React.Fragment>
 		);
 	}
 };
