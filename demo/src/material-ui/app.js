@@ -6,6 +6,14 @@ import {
   withOpeningDock
 } from "../../../src";
 
+import RaisedButton from "material-ui/RaisedButton";
+import fileDownload from "../file-download";
+
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import getMuiTheme from "material-ui/styles/getMuiTheme";
+
+const muiTheme = getMuiTheme();
+
 const WidthProvider = require("react-grid-layout").WidthProvider;
 const ResponsiveReactGridLayout = connectReactGridLayoutBuilder(
   WidthProvider(Responsive)
@@ -88,7 +96,51 @@ export default class App extends React.Component {
   updateConfig = config => {
     this.setState(config);
   };
+
+  handleFile = element => {
+    // https://www.html5rocks.com/en/tutorials/file/dndfiles/
+    const files = element.files;
+    if (!files.length) {
+      alert("Please select a file!");
+      return;
+    }
+    const file = files[0];
+    const start = 0;
+    const stop = file.size - 1;
+
+    const reader = new FileReader();
+    const that = this;
+    // If we use onloadend, we need to check the readyState.
+    reader.onloadend = function(evt) {
+      if (evt.target.readyState == FileReader.DONE) {
+        // DONE == 2
+        let layouts = { ...that.state.layouts };
+        layouts.lg = JSON.parse(evt.target.result).lg;
+        that.setState({ layouts });
+      }
+    };
+
+    const blob = file.slice(start, stop + 1);
+    reader.readAsBinaryString(blob);
+  };
+
+  saveJson = layouts => {
+    let dataStr = JSON.stringify(layouts);
+    let dataUri =
+      "data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
+    let exportFileDefaultName = new Date().toISOString();
+
+    let linkElement = document.createElement("a");
+    linkElement.setAttribute("href", dataUri);
+    linkElement.setAttribute(
+      "download",
+      "layout " + exportFileDefaultName + ".json"
+    );
+    linkElement.click();
+  };
   render() {
+    const btnStyle = { margin: 12 };
+
     return (
       <div>
         <div
@@ -121,19 +173,48 @@ export default class App extends React.Component {
             <i className="fa fa-github" aria-hidden="true" /> View on github
           </a>
           <h4>
-            powered by{" "}
+            powered by
             <a href="https://github.com/STRML/react-grid-layout" target="blank">
-              {" "}
               @react-grid-layout
             </a>
           </h4>
           <h4>
-            powered by{" "}
+            powered by
             <a href="https://github.com/mui-org/material-ui/" target="blank">
-              {" "}
               @material-ui
             </a>
           </h4>
+
+          <MuiThemeProvider muiTheme={muiTheme}>
+            <div>
+              <div>
+                <RaisedButton
+                  style={btnStyle}
+                  containerElement="label"
+                  label="Choose file"
+                >
+                  <input
+                    style={{ display: "none" }}
+                    onChange={e => this.handleFile(e.target)}
+                    accept=".json"
+                    type="file"
+                    className="custom-file-input"
+                    id="inputGroupFile01"
+                  />
+                </RaisedButton>
+              </div>
+              <div>
+                <RaisedButton
+                  label="Download layout"
+                  primary={true}
+                  style={btnStyle}
+                  href="#"
+                  onClick={() => this.saveJson(this.state.layouts)}
+                />
+              </div>
+            </div>
+          </MuiThemeProvider>
+
           <h5>Generated Layout:</h5>
           <pre>
             <code>{JSON.stringify(this.state, null, 2)}</code>
