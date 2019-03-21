@@ -2,7 +2,7 @@
 
 ## [Unreleased] (need to update branch gh-page when merged on "master")
 
-## [3.0.0] - 03/13/2019
+## [3.0.0] - 03/21/2019
 
 ### Added
 Download the current layout & upload a custom one
