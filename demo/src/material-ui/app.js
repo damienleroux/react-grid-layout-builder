@@ -7,7 +7,6 @@ import {
 } from "../../../src";
 
 import RaisedButton from "material-ui/RaisedButton";
-import fileDownload from "../file-download";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
@@ -109,14 +108,13 @@ export default class App extends React.Component {
     const stop = file.size - 1;
 
     const reader = new FileReader();
-    const that = this;
     // If we use onloadend, we need to check the readyState.
-    reader.onloadend = function(evt) {
+    reader.onloadend = evt => {
       if (evt.target.readyState == FileReader.DONE) {
         // DONE == 2
-        let layouts = { ...that.state.layouts };
+        const layouts = { ...this.state.layouts };
         layouts.lg = JSON.parse(evt.target.result).lg;
-        that.setState({ layouts });
+        this.setState({ layouts });
       }
     };
 
@@ -124,20 +122,6 @@ export default class App extends React.Component {
     reader.readAsBinaryString(blob);
   };
 
-  saveJson = layouts => {
-    let dataStr = JSON.stringify(layouts);
-    let dataUri =
-      "data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
-    let exportFileDefaultName = new Date().toISOString();
-
-    let linkElement = document.createElement("a");
-    linkElement.setAttribute("href", dataUri);
-    linkElement.setAttribute(
-      "download",
-      "layout " + exportFileDefaultName + ".json"
-    );
-    linkElement.click();
-  };
   render() {
     const btnStyle = { margin: 12 };
 
@@ -209,7 +193,10 @@ export default class App extends React.Component {
                   primary={true}
                   style={btnStyle}
                   href="#"
-                  onClick={() => this.saveJson(this.state.layouts)}
+                  href={`data:application/json;charset=utf-8,${encodeURIComponent(
+                    JSON.stringify(this.state.layouts)
+                  )}`}
+                  download={`layout ${new Date().toISOString()}.json`}
                 />
               </div>
             </div>
