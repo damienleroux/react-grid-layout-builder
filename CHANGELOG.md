@@ -5,6 +5,9 @@
 ## [3.0.0] - 03/13/2019
 
 ### Added
+Download the current layout & upload a custom one
+
+### Added
 "Save or load a custom layout" using local storage as one from the TODO List
 
 ## [2.0.0] - 04/02/2018

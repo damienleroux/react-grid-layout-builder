@@ -6,6 +6,13 @@ import {
   withOpeningDock
 } from "../../../src";
 
+import RaisedButton from "material-ui/RaisedButton";
+
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import getMuiTheme from "material-ui/styles/getMuiTheme";
+
+const muiTheme = getMuiTheme();
+
 const WidthProvider = require("react-grid-layout").WidthProvider;
 const ResponsiveReactGridLayout = connectReactGridLayoutBuilder(
   WidthProvider(Responsive)
@@ -88,7 +95,36 @@ export default class App extends React.Component {
   updateConfig = config => {
     this.setState(config);
   };
+
+  handleFile = element => {
+    // https://www.html5rocks.com/en/tutorials/file/dndfiles/
+    const files = element.files;
+    if (!files.length) {
+      alert("Please select a file!");
+      return;
+    }
+    const file = files[0];
+    const start = 0;
+    const stop = file.size - 1;
+
+    const reader = new FileReader();
+    // If we use onloadend, we need to check the readyState.
+    reader.onloadend = evt => {
+      if (evt.target.readyState == FileReader.DONE) {
+        // DONE == 2
+        const layouts = { ...this.state.layouts };
+        layouts.lg = JSON.parse(evt.target.result).lg;
+        this.setState({ layouts });
+      }
+    };
+
+    const blob = file.slice(start, stop + 1);
+    reader.readAsBinaryString(blob);
+  };
+
   render() {
+    const btnStyle = { margin: 12 };
+
     return (
       <div>
         <div
@@ -121,19 +157,51 @@ export default class App extends React.Component {
             <i className="fa fa-github" aria-hidden="true" /> View on github
           </a>
           <h4>
-            powered by{" "}
+            powered by
             <a href="https://github.com/STRML/react-grid-layout" target="blank">
-              {" "}
               @react-grid-layout
             </a>
           </h4>
           <h4>
-            powered by{" "}
+            powered by
             <a href="https://github.com/mui-org/material-ui/" target="blank">
-              {" "}
               @material-ui
             </a>
           </h4>
+
+          <MuiThemeProvider muiTheme={muiTheme}>
+            <div>
+              <div>
+                <RaisedButton
+                  style={btnStyle}
+                  containerElement="label"
+                  label="Choose file"
+                >
+                  <input
+                    style={{ display: "none" }}
+                    onChange={e => this.handleFile(e.target)}
+                    accept=".json"
+                    type="file"
+                    className="custom-file-input"
+                    id="inputGroupFile01"
+                  />
+                </RaisedButton>
+              </div>
+              <div>
+                <RaisedButton
+                  label="Download layout"
+                  primary={true}
+                  style={btnStyle}
+                  href="#"
+                  href={`data:application/json;charset=utf-8,${encodeURIComponent(
+                    JSON.stringify(this.state.layouts)
+                  )}`}
+                  download={`layout ${new Date().toISOString()}.json`}
+                />
+              </div>
+            </div>
+          </MuiThemeProvider>
+
           <h5>Generated Layout:</h5>
           <pre>
             <code>{JSON.stringify(this.state, null, 2)}</code>

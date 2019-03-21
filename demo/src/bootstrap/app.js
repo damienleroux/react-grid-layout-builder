@@ -5,7 +5,7 @@ import {
   connectReactGridLayoutBuilder,
   withOpeningDock
 } from "../../../src";
-import { Grid, Row, Col } from "react-bootstrap";
+import { Grid, Row, Col, Button } from "react-bootstrap";
 
 const WidthProvider = require("react-grid-layout").WidthProvider;
 const ResponsiveReactGridLayout = connectReactGridLayoutBuilder(
@@ -89,6 +89,33 @@ export default class App extends React.Component {
   updateConfig = config => {
     this.setState(config);
   };
+
+  handleFile = element => {
+    // https://www.html5rocks.com/en/tutorials/file/dndfiles/
+    const files = element.files;
+    if (!files.length) {
+      alert("Please select a file!");
+      return;
+    }
+    const file = files[0];
+    const start = 0;
+    const stop = file.size - 1;
+
+    const reader = new FileReader();
+    // If we use onloadend, we need to check the readyState.
+    reader.onloadend = evt => {
+      if (evt.target.readyState == FileReader.DONE) {
+        // DONE == 2
+        const layouts = { ...this.state.layouts };
+        layouts.lg = JSON.parse(evt.target.result).lg;
+        this.setState({ layouts });
+      }
+    };
+
+    const blob = file.slice(start, stop + 1);
+    reader.readAsBinaryString(blob);
+  };
+
   render() {
     return (
       <Grid fluid>
@@ -110,22 +137,48 @@ export default class App extends React.Component {
               <i className="fa fa-github" aria-hidden="true" /> View on github
             </a>
             <h4>
-              powered by{" "}
+              powered by
               <a
                 href="https://github.com/STRML/react-grid-layout"
                 target="blank"
               >
-                {" "}
                 @react-grid-layout
               </a>
             </h4>
             <h4>
-              powered by{" "}
+              powered by
               <a href="https://react-bootstrap.github.io/" target="blank">
-                {" "}
                 @react-bootstrap
               </a>
             </h4>
+            <div className="input-group mb-3">
+              <div className="custom-file">
+                <input
+                  onChange={e => this.handleFile(e.target)}
+                  accept=".json"
+                  type="file"
+                  className="custom-file-input"
+                  id="inputGroupFile01"
+                />
+                <label
+                  className="custom-file-label text-truncate"
+                  htmlFor="inputGroupFile01"
+                  aria-describedby="inputGroupFileAddon01"
+                >
+                  Choose file
+                </label>
+              </div>
+            </div>
+
+            <a
+              href={`data:application/json;charset=utf-8,${encodeURIComponent(
+                JSON.stringify(this.state.layouts)
+              )}`}
+              download={`layout ${new Date().toISOString()}.json`}
+              className="btn btn-primary mb-3"
+            >
+              Download layout
+            </a>
             <h5>Generated Layout:</h5>
             <pre>
               <code>{JSON.stringify(this.state, null, 2)}</code>
