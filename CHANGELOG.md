@@ -2,11 +2,15 @@
 
 ## [Unreleased] (need to update branch gh-page when merged on "master")
 
+## [3.0.0]
+
 ### Added
 Download the current layout & upload a custom one
 
 ### Added
 "Save or load a custom layout" using local storage as one from the TODO List
+
+## [2.0.0]
 
 ### Added
 
