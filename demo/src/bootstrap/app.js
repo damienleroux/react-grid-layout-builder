@@ -6,7 +6,6 @@ import {
   withOpeningDock
 } from "../../../src";
 import { Grid, Row, Col, Button } from "react-bootstrap";
-import fileDownload from "../file-download";
 
 const WidthProvider = require("react-grid-layout").WidthProvider;
 const ResponsiveReactGridLayout = connectReactGridLayoutBuilder(
@@ -103,34 +102,18 @@ export default class App extends React.Component {
     const stop = file.size - 1;
 
     const reader = new FileReader();
-    const that = this;
     // If we use onloadend, we need to check the readyState.
-    reader.onloadend = function(evt) {
+    reader.onloadend = evt => {
       if (evt.target.readyState == FileReader.DONE) {
         // DONE == 2
-        let layouts = { ...that.state.layouts };
+        const layouts = { ...this.state.layouts };
         layouts.lg = JSON.parse(evt.target.result).lg;
-        that.setState({ layouts });
+        this.setState({ layouts });
       }
     };
 
     const blob = file.slice(start, stop + 1);
     reader.readAsBinaryString(blob);
-  };
-
-  saveJson = layouts => {
-    let dataStr = JSON.stringify(layouts);
-    let dataUri =
-      "data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
-    let exportFileDefaultName = new Date().toISOString();
-
-    let linkElement = document.createElement("a");
-    linkElement.setAttribute("href", dataUri);
-    linkElement.setAttribute(
-      "download",
-      "layout " + exportFileDefaultName + ".json"
-    );
-    linkElement.click();
   };
 
   render() {
@@ -188,9 +171,11 @@ export default class App extends React.Component {
             </div>
 
             <a
-              href="#"
+              href={`data:application/json;charset=utf-8,${encodeURIComponent(
+                JSON.stringify(this.state.layouts)
+              )}`}
+              download={`layout ${new Date().toISOString()}.json`}
               className="btn btn-primary mb-3"
-              onClick={() => this.saveJson(this.state.layouts)}
             >
               Download layout
             </a>
