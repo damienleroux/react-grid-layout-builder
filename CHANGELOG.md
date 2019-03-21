@@ -2,6 +2,16 @@
 
 ## [Unreleased] (need to update branch gh-page when merged on "master")
 
+## [3.0.0] - 03/21/2019
+
+### Added
+Download the current layout & upload a custom one
+
+### Added
+"Save or load a custom layout" using local storage as one from the TODO List
+
+## [2.0.0] - 04/02/2018
+
 ### Added
 
 new version of this editor with Material-ui (thank to [@nywooz](https://github.com/nywooz) for contributing):
@@ -9,6 +19,11 @@ new version of this editor with Material-ui (thank to [@nywooz](https://github.c
 ```javascript
 import { MaterialUIReactGridLayoutBuilder } from 'react-grid-layout-builder';
 ```
+
+Caveat: 
+
+The material ui editor requires the bootstrap css for now for the grid layout. This will be fixed in future versions. (will required the latest version fo material-ui)
+
 
 ### Changed
 
