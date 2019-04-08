@@ -46,10 +46,12 @@ const defaultReactGridLayoutProps = {
 
 class ReactGridLayoutBuilderDemo extends React.Component {
   generateDOM = () => {
+    const allStatic = this.props.conf.isStatic;
     return _.map(this.props.conf.layouts.lg, function(l, i) {
+      const staticGrid = allStatic ? true : l.static;
       return (
-        <div key={i} className={l.static ? "static" : ""}>
-          {l.static ? (
+        <div key={i} className={staticGrid ? "static" : ""}>
+          {staticGrid ? (
             <span
               className="text"
               title="This item is static and cannot be removed or resized."
