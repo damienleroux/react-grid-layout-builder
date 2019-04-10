@@ -178,7 +178,7 @@ function Layouts(props) {
   var {
     rowHeight,
     isDraggable,
-    isStatic,
+    isAllStatic,
     isResizable,
     autoSize,
     verticalCompact,
@@ -188,7 +188,7 @@ function Layouts(props) {
   //Set with defaultValue if no defined
   rowHeight = rowHeight !== undefined ? rowHeight : 150;
   isDraggable = isDraggable !== undefined ? isDraggable : true;
-  isStatic = isStatic !== undefined ? isStatic : false;
+  isAllStatic = isAllStatic !== undefined ? isAllStatic : false;
   isResizable = isResizable !== undefined ? isResizable : true;
   autoSize = autoSize !== undefined ? autoSize : true;
   verticalCompact = verticalCompact !== undefined ? verticalCompact : true;
@@ -217,9 +217,9 @@ function Layouts(props) {
           />
 
           <Checkbox
-            id="isStatic"
-            name="isStatic"
-            checked={isStatic}
+            id="isAllStatic"
+            name="isAllStatic"
+            checked={isAllStatic}
             onCheck={props.editConfigCallback}
             label="Items are static"
             style={styles.checkbox}

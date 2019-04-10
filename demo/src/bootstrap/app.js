@@ -40,11 +40,19 @@ const defaultReactGridLayoutProps = {
 
 class ReactGridLayoutBuilderDemo extends React.Component {
   generateDOM = () => {
-    const allStatic = this.props.conf.isStatic;
+    const isAllStatic = this.props.conf.isAllStatic;
+    const toggleStatic = this.props.toggleStatic;
     return _.map(this.props.conf.layouts.lg, function(l, i) {
-      const staticGrid = allStatic ? true : l.static;
+      const staticGrid = isAllStatic ? true : l.static;
       return (
         <div key={i} className={staticGrid ? "static" : ""}>
+          <div>
+            <i
+              className="fa fa-cog float-right p-1"
+              aria-hidden="true"
+              onClick={() => toggleStatic(l)}
+            />
+          </div>
           {staticGrid ? (
             <span
               className="text"
@@ -92,6 +100,10 @@ export default class App extends React.Component {
     this.setState(config);
   };
 
+  toggleStatic = item => {
+    console.log(item);
+  };
+
   handleFile = element => {
     // https://www.html5rocks.com/en/tutorials/file/dndfiles/
     const files = element.files;
@@ -126,6 +138,7 @@ export default class App extends React.Component {
             <ReactGridLayoutBuilderDemo
               conf={this.state}
               updateConfig={this.updateConfig}
+              toggleStatic={this.toggleStatic}
             />
           </Col>
           <Col xs={12} md={3} lg={2}>

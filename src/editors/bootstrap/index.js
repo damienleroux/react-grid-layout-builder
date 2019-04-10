@@ -52,16 +52,22 @@ function InputNumber(props) {
 }
 
 function InputNumberGtrThanZero(props) {
-  return <InputNumber {...props} min={1}/>;
+  return <InputNumber {...props} min={1} />;
 }
 
 function InputNumberGtrOrEqualToZero(props) {
-  return <InputNumber {...props} min={0}/>;
+  return <InputNumber {...props} min={0} />;
 }
 
 function BreakpointInput(props) {
   var { name } = props;
-  return <InputNumberGtrOrEqualToZero {...props} name={"breakpoints_" + name} addon="px"/>
+  return (
+    <InputNumberGtrOrEqualToZero
+      {...props}
+      name={"breakpoints_" + name}
+      addon="px"
+    />
+  );
 }
 
 function Breakpoints(props) {
@@ -108,12 +114,14 @@ function Breakpoints(props) {
 
 function ColInput(props) {
   var { name } = props;
-  return <InputNumberGtrThanZero {...props} name={"cols_" + name} addon="cols"/>
+  return (
+    <InputNumberGtrThanZero {...props} name={"cols_" + name} addon="cols" />
+  );
 }
 
 function Cols(props) {
   if (!props.cols) {
-    return <div/>;
+    return <div />;
   }
   var { lg, md, sm, xs, xxs } = props.cols;
   return (
@@ -155,13 +163,13 @@ function Cols(props) {
 
 function Layouts(props) {
   if (!props.layouts) {
-    return <div/>;
+    return <div />;
   }
 
   var {
     rowHeight,
     isDraggable,
-    isStatic,
+    isAllStatic,
     isResizable,
     autoSize,
     verticalCompact,
@@ -171,7 +179,7 @@ function Layouts(props) {
   //Set with defaultValue if no defined
   rowHeight = rowHeight !== undefined ? rowHeight : 150;
   isDraggable = isDraggable !== undefined ? isDraggable : true;
-  isStatic = isStatic !== undefined ? isStatic : false;
+  isAllStatic = isAllStatic !== undefined ? isAllStatic : false;
   isResizable = isResizable !== undefined ? isResizable : true;
   autoSize = autoSize !== undefined ? autoSize : true;
   verticalCompact = verticalCompact !== undefined ? verticalCompact : true;
@@ -196,8 +204,8 @@ function Layouts(props) {
         Items are draggable
       </Checkbox>
       <Checkbox
-        id="isStatic"
-        checked={isStatic}
+        id="isAllStatic"
+        checked={isAllStatic}
         onChange={props.editConfigCallback}
       >
         Items are static

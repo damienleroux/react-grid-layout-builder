@@ -46,7 +46,7 @@ const defaultReactGridLayoutProps = {
 
 class ReactGridLayoutBuilderDemo extends React.Component {
   generateDOM = () => {
-    const allStatic = this.props.conf.isStatic;
+    const allStatic = this.props.conf.isAllStatic;
     return _.map(this.props.conf.layouts.lg, function(l, i) {
       const staticGrid = allStatic ? true : l.static;
       return (

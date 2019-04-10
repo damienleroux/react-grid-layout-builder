@@ -19,9 +19,9 @@ export const connectReactGridLayoutBuilderToEditor = Editor =>
               targetValue = event.target.checked;
               reactGridLayout.isResizable = targetValue;
               break;
-            case "isStatic":
+            case "isAllStatic":
               targetValue = event.target.checked;
-							reactGridLayout.isStatic = targetValue;
+              reactGridLayout.isAllStatic = targetValue;
               break;
             case "autoSize":
               targetValue = event.target.checked;
@@ -71,9 +71,11 @@ export const connectReactGridLayoutBuilderToEditor = Editor =>
           this.props.updateConfigFunc(reactGridLayout);
         }
       }
-    }
+    };
     render() {
-			return <Editor editConfigCallback={this.editConfigCallback} {...this.props} />;
+      return (
+        <Editor editConfigCallback={this.editConfigCallback} {...this.props} />
+      );
     }
   };
 
