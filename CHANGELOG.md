@@ -2,6 +2,12 @@
 
 ## [Unreleased] (need to update branch gh-page when merged on "master")
 
+### Added
+Transform the generated layout as static
+
+### Added
+Choose which item is static or not
+
 ## [3.0.0] - 03/21/2019
 
 ### Added
