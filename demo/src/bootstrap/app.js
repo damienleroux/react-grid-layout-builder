@@ -48,7 +48,9 @@ class ReactGridLayoutBuilderDemo extends React.Component {
         <div key={i} className={staticGrid ? "static" : ""}>
           <div>
             <i
-              className="fa fa-cog float-right p-1"
+              className={`float-right p-1 fa fa-thumbtack ${
+                staticGrid ? "" : "fa-rotate-90"
+              }`}
               aria-hidden="true"
               onClick={() => toggleStatic(l)}
             />
@@ -100,8 +102,20 @@ export default class App extends React.Component {
     this.setState(config);
   };
 
-  toggleStatic = item => {
-    console.log(item);
+  toggleStatic = grid => {
+    const newlayouts = { ...this.state.layouts };
+    const newitems = newlayouts.lg.slice();
+    const index = newitems.findIndex(function(item) {
+      return item.i === grid.i;
+    });
+    if (index === -1) return;
+
+    newitems[index].static = !grid.static;
+
+    this.setState({
+      layouts: newlayouts
+    });
+    debugger;
   };
 
   handleFile = element => {

@@ -22,6 +22,11 @@ export const connectReactGridLayoutBuilderToEditor = Editor =>
             case "isAllStatic":
               targetValue = event.target.checked;
               reactGridLayout.isAllStatic = targetValue;
+
+              reactGridLayout.layouts.lg.map(
+                item => (item.static = reactGridLayout.isAllStatic)
+              );
+
               break;
             case "autoSize":
               targetValue = event.target.checked;
