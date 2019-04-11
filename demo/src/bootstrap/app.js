@@ -115,7 +115,6 @@ export default class App extends React.Component {
     this.setState({
       layouts: newlayouts
     });
-    debugger;
   };
 
   handleFile = element => {
