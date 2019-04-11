@@ -1,43 +1,42 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import React from "react";
+import ReactDOM from "react-dom";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
-import Checkbox from 'material-ui/Checkbox';
-import TextField from 'material-ui/TextField';
-
+import Checkbox from "material-ui/Checkbox";
+import TextField from "material-ui/TextField";
 
 const styles = {
   block: {
-    maxWidth: 250,
+    maxWidth: 250
   },
   checkbox: {
-    marginBottom: 16,
-  },
+    marginBottom: 16
+  }
 };
 
 function InputNumber(props) {
   var { name, label, value, min, max, editConfigCallback, addon } = props;
   value = value ? value : 0;
 
-  var getValidationState = (value) => {
+  var getValidationState = value => {
     if (min && value < min) {
-      return 'error';
+      return "error";
     } else {
-      return 'success';
+      return "success";
     }
 
     if (max && value > max) {
-      return 'error';
+      return "error";
     } else {
-      return 'success';
+      return "success";
     }
-  }
+  };
 
-  var onChange = (event) => {
-    if (getValidationState(event.target.value) === 'success') {
+  var onChange = event => {
+    if (getValidationState(event.target.value) === "success") {
       editConfigCallback(event);
     }
-  }
+  };
 
   return (
     <div className="col">
@@ -57,9 +56,6 @@ function InputNumber(props) {
   );
 }
 
-
-
-
 function InputNumberGtrThanZero(props) {
   return <InputNumber {...props} min={1} />;
 }
@@ -70,23 +66,54 @@ function InputNumberGtrOrEqualToZero(props) {
 
 function BreakpointInput(props) {
   var { name } = props;
-  return <InputNumberGtrOrEqualToZero {...props} name={"breakpoints_" + name} addon="px" />
+  return (
+    <InputNumberGtrOrEqualToZero
+      {...props}
+      name={"breakpoints_" + name}
+      addon="px"
+    />
+  );
 }
 
 function Breakpoints(props) {
   if (!props.breakpoints) {
-    return (<div></div>);
+    return <div />;
   }
   var { lg, md, sm, xs, xxs } = props.breakpoints;
   return (
     <div>
       <h4>Breakpoints</h4>
       <div className="row">
-        <BreakpointInput name="lg" value={lg} label="large" editConfigCallback={props.editConfigCallback} />
-        <BreakpointInput name="md" value={md} label="medium" editConfigCallback={props.editConfigCallback} />
-        <BreakpointInput name="sm" value={sm} label="small" editConfigCallback={props.editConfigCallback} />
-        <BreakpointInput name="xs" value={xs} label="extra small" editConfigCallback={props.editConfigCallback} />
-        <BreakpointInput name="xxs" value={xxs} label="extra extra small" editConfigCallback={props.editConfigCallback} />
+        <BreakpointInput
+          name="lg"
+          value={lg}
+          label="large"
+          editConfigCallback={props.editConfigCallback}
+        />
+        <BreakpointInput
+          name="md"
+          value={md}
+          label="medium"
+          editConfigCallback={props.editConfigCallback}
+        />
+        <BreakpointInput
+          name="sm"
+          value={sm}
+          label="small"
+          editConfigCallback={props.editConfigCallback}
+        />
+        <BreakpointInput
+          name="xs"
+          value={xs}
+          label="extra small"
+          editConfigCallback={props.editConfigCallback}
+        />
+        <BreakpointInput
+          name="xxs"
+          value={xxs}
+          label="extra extra small"
+          editConfigCallback={props.editConfigCallback}
+        />
       </div>
     </div>
   );
@@ -94,7 +121,9 @@ function Breakpoints(props) {
 
 function ColInput(props) {
   var { name } = props;
-  return <InputNumberGtrThanZero {...props} name={"cols_" + name} addon="cols" />
+  return (
+    <InputNumberGtrThanZero {...props} name={"cols_" + name} addon="cols" />
+  );
 }
 
 function Cols(props) {
@@ -103,14 +132,39 @@ function Cols(props) {
   }
   var { lg, md, sm, xs, xxs } = props.cols;
   return (
-    <div >
+    <div>
       <h4>Columns</h4>
       <div className="row">
-        <ColInput name="lg" value={lg} label="large" editConfigCallback={props.editConfigCallback} />
-        <ColInput name="md" value={md} label="medium" editConfigCallback={props.editConfigCallback} />
-        <ColInput name="sm" value={sm} label="small" editConfigCallback={props.editConfigCallback} />
-        <ColInput name="xs" value={xs} label="extra small" editConfigCallback={props.editConfigCallback} />
-        <ColInput name="xxs" value={xxs} label="extra extra small" editConfigCallback={props.editConfigCallback} />
+        <ColInput
+          name="lg"
+          value={lg}
+          label="large"
+          editConfigCallback={props.editConfigCallback}
+        />
+        <ColInput
+          name="md"
+          value={md}
+          label="medium"
+          editConfigCallback={props.editConfigCallback}
+        />
+        <ColInput
+          name="sm"
+          value={sm}
+          label="small"
+          editConfigCallback={props.editConfigCallback}
+        />
+        <ColInput
+          name="xs"
+          value={xs}
+          label="extra small"
+          editConfigCallback={props.editConfigCallback}
+        />
+        <ColInput
+          name="xxs"
+          value={xxs}
+          label="extra extra small"
+          editConfigCallback={props.editConfigCallback}
+        />
       </div>
     </div>
   );
@@ -121,11 +175,20 @@ function Layouts(props) {
     return <div />;
   }
 
-  var { rowHeight, isDraggable, isResizable, autoSize, verticalCompact, margin } = props;
+  var {
+    rowHeight,
+    isDraggable,
+    isAllStatic,
+    isResizable,
+    autoSize,
+    verticalCompact,
+    margin
+  } = props;
 
   //Set with defaultValue if no defined
   rowHeight = rowHeight !== undefined ? rowHeight : 150;
   isDraggable = isDraggable !== undefined ? isDraggable : true;
+  isAllStatic = isAllStatic !== undefined ? isAllStatic : false;
   isResizable = isResizable !== undefined ? isResizable : true;
   autoSize = autoSize !== undefined ? autoSize : true;
   verticalCompact = verticalCompact !== undefined ? verticalCompact : true;
@@ -133,9 +196,15 @@ function Layouts(props) {
   var marginY = margin && margin[1] !== undefined ? margin[1] : 10;
 
   return (
-    <div >
+    <div>
       <h4>Layouts</h4>
-      <InputNumberGtrThanZero value={rowHeight} label="Row Height" editConfigCallback={props.editConfigCallback} name={"rowHeight"} addon="px" />
+      <InputNumberGtrThanZero
+        value={rowHeight}
+        label="Row Height"
+        editConfigCallback={props.editConfigCallback}
+        name={"rowHeight"}
+        addon="px"
+      />
       <MuiThemeProvider>
         <div>
           <Checkbox
@@ -144,6 +213,15 @@ function Layouts(props) {
             checked={isDraggable}
             onCheck={props.editConfigCallback}
             label="Items are draggable"
+            style={styles.checkbox}
+          />
+
+          <Checkbox
+            id="isAllStatic"
+            name="isAllStatic"
+            checked={isAllStatic}
+            onCheck={props.editConfigCallback}
+            label="Items are static"
             style={styles.checkbox}
           />
 
@@ -173,15 +251,24 @@ function Layouts(props) {
             label="The layout will compact vertically"
             style={styles.checkbox}
           />
-
-
-
         </div>
       </MuiThemeProvider>
 
       <div className="row">
-        <InputNumberGtrThanZero value={marginX} label="Horizontal margin between items" editConfigCallback={props.editConfigCallback} name={"marginX"} addon="px" />
-        <InputNumberGtrThanZero value={marginY} label="Vertical margin between items" editConfigCallback={props.editConfigCallback} name={"marginY"} addon="px" />
+        <InputNumberGtrThanZero
+          value={marginX}
+          label="Horizontal margin between items"
+          editConfigCallback={props.editConfigCallback}
+          name={"marginX"}
+          addon="px"
+        />
+        <InputNumberGtrThanZero
+          value={marginY}
+          label="Vertical margin between items"
+          editConfigCallback={props.editConfigCallback}
+          name={"marginY"}
+          addon="px"
+        />
       </div>
     </div>
   );
@@ -193,15 +280,18 @@ export default function BootstrapEditor(props) {
     <form className="reactDashboardBuilderBody" style={{ background: "unset" }}>
       <MuiThemeProvider>
         <div className="container-fluid">
-
-          <Breakpoints breakpoints={breakpoints} editConfigCallback={props.editConfigCallback} />
+          <Breakpoints
+            breakpoints={breakpoints}
+            editConfigCallback={props.editConfigCallback}
+          />
 
           <Cols cols={cols} editConfigCallback={props.editConfigCallback} />
 
-          <Layouts {...props.reactGridLayout} editConfigCallback={props.editConfigCallback} />
-
+          <Layouts
+            {...props.reactGridLayout}
+            editConfigCallback={props.editConfigCallback}
+          />
         </div>
-
       </MuiThemeProvider>
     </form>
   );
